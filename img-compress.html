@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fully responsive image resizing and compression tool. Manually control image size in MB to KB while maintaining good quality. SEO-friendly and integrated with Google AdSense for monetization.">
+    <meta name="keywords" content="image resizer, image compressor, MB to KB, responsive tool, SEO, Google AdSense">
+    <meta name="author" content="Your Name">
+    <title>Image Resizer & Compressor Tool</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #4CAF50;
+            color: #fff;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+        }
+
+        header p {
+            margin: 10px 0 0;
+            font-size: 1.1rem;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        /* Tool Container */
+        .tool-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .tool-container label {
+            display: block;
+            margin: 15px 0 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        .tool-container input[type="file"],
+        .tool-container input[type="number"],
+        .tool-container button {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+
+        .tool-container input[type="file"] {
+            background-color: #f9f9f9;
+        }
+
+        .tool-container input[type="number"] {
+            border: 1px solid #4CAF50;
+        }
+
+        .tool-container button {
+            background-color: #4CAF50;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .tool-container button:hover {
+            background-color: #45a049;
+        }
+
+        /* Image Container */
+        .image-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .image-container img,
+        .image-container canvas {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .image-container a {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .image-container a:hover {
+            background-color: #45a049;
+        }
+
+        /* Advertisements */
+        .advertisement {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 15px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 600px) {
+            header h1 {
+                font-size: 2rem;
+            }
+
+            header p {
+                font-size: 1rem;
+            }
+
+            .tool-container {
+                padding: 15px;
+            }
+
+            .tool-container button {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Image Resizer & Compressor Tool</h1>
+        <p>Resize and compress your images dynamically. Manually control image size in MB to KB while maintaining good quality.</p>
+    </header>
+
+    <main>
+        <!-- AdSense Ad Unit -->
+        <div class="advertisement">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_AD_SENSE_ID" crossorigin="anonymous"></script>
+            <!-- Ad Unit -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-YOUR_AD_SENSE_ID"
+                 data-ad-slot="YOUR_AD_UNIT_ID"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+
+        <!-- Image Resizer & Compressor Tool -->
+        <section class="tool-container">
+            <input type="file" id="imageInput" accept="image/*">
+            <label for="targetSize">Target Size (KB):</label>
+            <input type="number" id="targetSize" min="10" max="1024" placeholder="Enter target size in KB">
+            <button id="resizeButton">Resize & Compress Image</button>
+            <div class="image-container">
+                <img id="previewImage" src="#" alt="Preview Image" style="display:none;">
+                <canvas id="resizedCanvas"></canvas>
+            </div>
+            <a id="downloadLink" style="display:none;">Download Resized Image</a>
+        </section>
+
+        <!-- AdSense Ad Unit -->
+        <div class="advertisement">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_AD_SENSE_ID" crossorigin="anonymous"></script>
+            <!-- Ad Unit -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-YOUR_AD_SENSE_ID"
+                 data-ad-slot="YOUR_AD_UNIT_ID"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2023 Image Resizer & Compressor Tool. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('resizeButton').addEventListener('click', function () {
+            const fileInput = document.getElementById('imageInput');
+            const targetSizeKB = parseFloat(document.getElementById('targetSize').value);
+            const canvas = document.getElementById('resizedCanvas');
+            const downloadLink = document.getElementById('downloadLink');
+            const previewImage = document.getElementById('previewImage');
+
+            if (fileInput.files && fileInput.files[0] && targetSizeKB > 0) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    const img = new Image();
+                    img.onload = function () {
+                        let quality = 0.9; // Start with high quality (90%)
+                        let width = img.width;
+                        let height = img.height;
+
+                        // Function to resize and compress image to target size
+                        const resizeAndCompress = () => {
+                            // Reduce dimensions proportionally
+                            width *= 0.9;
+                            height *= 0.9;
+
+                            // Set canvas dimensions
+                            canvas.width = width;
+                            canvas.height = height;
+
+                            // Draw image on canvas
+                            const ctx = canvas.getContext('2d');
+                            ctx.drawImage(img, 0, 0, width, height);
+
+                            // Convert canvas to Blob with specified quality
+                            canvas.toBlob((blob) => {
+                                const sizeKB = blob.size / 1024;
+
+                                // Check if target size is reached
+                                if (sizeKB > targetSizeKB && quality > 0.1) {
+                                    quality -= 0.05; // Reduce quality by 5%
+                                    resizeAndCompress(); // Recursively resize and compress
+                                } else {
+                                    // Display the resized and compressed image
+                                    previewImage.src = URL.createObjectURL(blob);
+                                    previewImage.style.display = 'block';
+
+                                    // Provide download link
+                                    downloadLink.href = URL.createObjectURL(blob);
+                                    downloadLink.download = 'resized-image.jpg';
+                                    downloadLink.style.display = 'block';
+                                }
+                            }, 'image/jpeg', quality);
+                        };
+
+                        resizeAndCompress(); // Start the resizing and compression process
+                    };
+                    img.src = e.target.result;
+                };
+                reader.readAsDataURL(fileInput.files[0]);
+            } else {
+                alert('Please select an image file and enter a valid target size in KB.');
+            }
+        });
+    </script>
+</body>
+</html>
